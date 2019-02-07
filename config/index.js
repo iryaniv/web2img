@@ -1,5 +1,5 @@
 const config = require('./prod');
 
-moudle.exports = {
-    config,
+module.exports = {
+    config
 }
