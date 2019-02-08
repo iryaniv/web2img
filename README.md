@@ -8,10 +8,8 @@ Useful as web preview or sandbox if you run it on container.
 {
   "source": "<h1>Test2222</h1>"
 }
-
-This Request will return png of the rendered page.
 ```
-
+This Request will return png of the rendered page.
 # How to use?
 ```bash
 yarn
