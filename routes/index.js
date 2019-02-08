@@ -5,8 +5,8 @@ const router = express.Router();
 const config = require('../config').config;
 const { spawnSync } = require('child_process');
 
-router.get('/api/hello', function(req, res, next) {
-    res.send({ hello: 'hello' });
+router.get('/', function(req, res, next) {
+    res.send("web2img-1.0");
 });
 
 router.post('/api/source', function(req, res, next) {
@@ -20,12 +20,11 @@ router.post('/api/source', function(req, res, next) {
         }
         let chromeHtmlPath = "file:///" + __dirname + "\\..\\" + htmlFilePath;
         const child = spawnSync(config.phantomBin, ['./rasterize.js', chromeHtmlPath, imgFilePath]);
-        console.log('error', child.error);
-        console.log('stdout ', child.stdout.toString());
-        console.log('stderr ', child.stderr.toString());
+        console.log('stdout: ', child.stdout.toString());
+        console.log('stderr: ', child.stderr.toString());
         let img = fs.readFileSync(imgFilePath);
-        // fs.unlink(htmlFilePath);
-        // fs.unlink(imgFilePath);
+        fs.unlink(htmlFilePath, err => { if (err) console.log(err) });
+        fs.unlink(imgFilePath, err => { if (err) console.log(err) });
         res.writeHead(200, { 'Content-Type': 'image/png' });
         res.end(img, 'binary');
     });
