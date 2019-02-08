@@ -12,8 +12,13 @@ API Health Check
 {
   "source": "<h1>Test2222</h1>"
 }
+
 ```
-This Request will return png of the rendered page.
+This Request will return png of the rendered page:
+
+![Screenshot](/example/example.png)
+
+
 # How to use?
 ```bash
 yarn
