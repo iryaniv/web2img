@@ -3,6 +3,8 @@ Takes webpage source code and returns rendered image of the web page.
 Useful as web preview or sandbox if you run it on container.
 
 # API Route
+```GET /```
+API Health Check
 ```POST /api/source```
 ```JSON
 {
