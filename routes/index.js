@@ -4,6 +4,8 @@ const uuidv4 = require('uuid/v4');
 const router = express.Router();
 const config = require('../config').config;
 const { spawnSync } = require('child_process');
+var phantomjs = require('phantomjs-bin');
+
 
 router.get('/', function(req, res, next) {
     res.send("web2img-1.0");
@@ -19,7 +21,7 @@ router.post('/api/source', function(req, res, next) {
             console.log(err);
         }
         let chromeHtmlPath = "file:///" + __dirname + "\\..\\" + htmlFilePath;
-        const child = spawnSync(config.phantomBin, ['./rasterize.js', chromeHtmlPath, imgFilePath]);
+        const child = spawnSync(phantomjs.path, ['./rasterize.js', chromeHtmlPath, imgFilePath]);
         console.log('stdout: ', child.stdout.toString());
         console.log('stderr: ', child.stderr.toString());
         let img = fs.readFileSync(imgFilePath);
