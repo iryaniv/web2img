@@ -19,8 +19,14 @@ router.post('/api/source', function(req, res, next) {
     fs.writeFile(htmlFilePath, source, function(err) {
         if (err) {
             console.log(err);
+            res.status(500).send();
         }
-        let chromeHtmlPath = "file:///" + __dirname + "\\..\\" + htmlFilePath;
+        let chromeHtmlPath;
+        if (process.platform === 'win32') {
+            chromeHtmlPath = "file:///" + __dirname + "\\..\\" + htmlFilePath;
+        } else {
+            chromeHtmlPath = "file://" + __dirname + "\\..\\" + htmlFilePath;
+        }
         const child = spawnSync(phantomjs.path, ['./rasterize.js', chromeHtmlPath, imgFilePath]);
         console.log('stdout: ', child.stdout.toString());
         console.log('stderr: ', child.stderr.toString());
