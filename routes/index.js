@@ -27,8 +27,7 @@ router.post('/api/source', function(req, res, next) {
         let img = fs.readFileSync(imgFilePath);
         fs.unlink(htmlFilePath, err => { if (err) console.log(err) });
         fs.unlink(imgFilePath, err => { if (err) console.log(err) });
-        res.writeHead(200, { 'Content-Type': 'image/png' });
-        res.end(img, 'binary');
+        res.status(200).send(img);
     });
 });
 
