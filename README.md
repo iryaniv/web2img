@@ -26,12 +26,11 @@ yarn start
 ```
 # Config
 Project configuration  is in ./config/prod.js
-If you run this on linux you should change the phantomBin to a compiled phantomjs version that suits your OS.
+
 ```javascript
 module.exports = {
   port: "4008",
   tmpHtmlDir: ".\\tmp\\html\\",
-  tmpImgDir: ".\\tmp\\img\\",
-  phantomBin: "./bin/phantomjs.exe"
-}
+  tmpImgDir: ".\\tmp\\img\\"
+  }
 ```
